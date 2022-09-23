@@ -4,15 +4,22 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('projnotes-2022b:server');
-var http = require('http');
+
+//ES5
+//var app = require('../app');
+//ES6
+import app from"../app"
+import debug from 'debug';
+import http from 'http';
+//var debug = require('debug')('projnotes-2022b:server');
+//var http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+//var port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
@@ -20,7 +27,8 @@ app.set('port', port);
  */
 //app es una funcion de tipo middleware(codigointermediario)
 //(req,res) =>{...res.send("algo")}
-var server = http.createServer(app);
+//var server = http.createServer(app);
+const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -60,17 +68,22 @@ function onError(error) {
   }
 
   var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+    //? 'Pipe ' + port  
+    ? `Pipe ${port}` 
+    //: 'Port ' + port;
+    : `Port ${port}`
+
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      //console.error(bind + ' requires elevated privileges');
+      console.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      //console.error( bind + ' is already in use');
+      console.error(`${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -83,10 +96,15 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  //var addr = server.address();
+  const addr = server.address();
+  const {port} = addr;
+  //var bind = typeof addr === 'string'
+  var bind = typeof addr === 'string' 
+   // ? 'pipe ' + addr
+    //: 'port ' + addr.port;
+    ? `pipe ${addr}` 
+    : `port ${port}` ;
   debug('Listening on ' + bind);
   //Desestrecuturando port de addr
   let {port} =addr
