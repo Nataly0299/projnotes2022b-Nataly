@@ -96,7 +96,7 @@ function onError(error) {
  */
 
 function onListening() {
-  //var addr = server.address();
+  
   const addr = server.address();
   const {port} = addr;
   //var bind = typeof addr === 'string'
@@ -107,7 +107,6 @@ function onListening() {
     : `port ${port}` ;
   debug('Listening on ' + bind);
   //Desestrecuturando port de addr
-  let {port} =addr
   console.log(`Listening at http://localhost:${port}`);
 
 }
