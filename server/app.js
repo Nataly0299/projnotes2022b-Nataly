@@ -15,6 +15,11 @@ import cookieParser from 'cookie-parser';
 //var logger = require('morgan');
 import logger from'morgan';
 
+import webpack from 'cookie-parser';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import WebpackHotMiddleware from 'webpack-hot-middleware';
+import webpackConfig from '../webpack.config';
+
 //Definición de rutas
 //var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
@@ -44,11 +49,12 @@ app.use(express.urlencoded({ extended: false }));
 //Parsear cookis
 app.use(cookieParser());
 //Servidor  de archivos estáticos 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname,'..','public')));
 
 //render requiere de una plantilla y send envia datos crudos 
 
 app.use('/', indexRouter);
+app.use('/index', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
